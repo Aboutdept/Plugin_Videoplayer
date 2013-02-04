@@ -22,7 +22,7 @@
 #define SEEK_THRESHOLD 5.0f //!< Start seeking when detecting at least 5s lag
 
 // CryEngine internal stuff that was just exposed in version 3.4 for backward compatibility defines those values here
-#ifndef SDK_VERSION_340
+#if CDK_VERSION < 340
 #define VIRTUAL_SCREEN_WIDTH 800.0f //!< Width of the virtual screen, inside the plugin relative sizes are used.
 #define VIRTUAL_SCREEN_HEIGHT 600.0f //!< Height of the virtual screen, inside the plugin relative sizes are used.
 #endif

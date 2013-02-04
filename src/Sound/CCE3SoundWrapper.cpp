@@ -133,7 +133,7 @@ namespace VideoplayerPlugin
                 if ( !IsSoundPlaying( pSound ) )
                 {
                     // if the current sound is not playing anymore then open the new sound
-#ifndef SDK_VERSION_343
+#if CDK_VERSION < 343
                     nSoundID = pSoundProxy->PlaySoundEx( sSoundOrEvent, vOffset, vDirection, nSoundFlags, fVolume, fMinRadius, fMaxRadius, eSemantic );
 #else
                     nSoundID = pSoundProxy->PlaySoundEx( sSoundOrEvent, vOffset, vDirection, nSoundFlags, 0, fVolume, fMinRadius, fMaxRadius, eSemantic );
@@ -146,7 +146,7 @@ namespace VideoplayerPlugin
                         pSoundProxy->StopAllSounds();
                         pSoundProxy->UpdateSounds();
 
-#ifndef SDK_VERSION_343
+#if CDK_VERSION < 343
                         nSoundID = pSoundProxy->PlaySoundEx( sSoundOrEvent, vOffset, vDirection, nSoundFlags, fVolume, fMinRadius, fMaxRadius, eSemantic );
 #else
                         nSoundID = pSoundProxy->PlaySoundEx( sSoundOrEvent, vOffset, vDirection, nSoundFlags, 0, fVolume, fMinRadius, fMaxRadius, eSemantic );

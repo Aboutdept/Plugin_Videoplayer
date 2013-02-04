@@ -380,7 +380,7 @@ namespace VideoplayerPlugin
                             fArea.y,
                             fArea.w,
                             fArea.h,
-#ifdef SDK_VERSION_340
+#if CDK_VERSION >= 340
                             gEnv->pRenderer->GetWhiteTextureId(),
 #else
                             -1,
@@ -414,7 +414,7 @@ namespace VideoplayerPlugin
                             fArea.y,
                             fArea.w,
                             fArea.h,
-#ifdef SDK_VERSION_340
+#if CDK_VERSION >= 340
                             gEnv->pRenderer->GetWhiteTextureId(),
 #else
                             -1,
