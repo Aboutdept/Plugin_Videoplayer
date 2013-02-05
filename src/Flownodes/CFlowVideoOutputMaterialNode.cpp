@@ -62,7 +62,7 @@ namespace VideoplayerPlugin
                     InputPortConfig<int>( "SubMaterial",             0,          _HELP( "submaterial to be modified" ),                    "nSubMat",      _UICONFIG( "" ) ),
                     InputPortConfig<int>( "TextureSlot",             0,          _HELP( "textureslot to be modified" ),                    "nTexSlot",     _UICONFIG( "enum_int:00_DIFFUSE=0,01_BUMP=1,02_GLOSS=2,03_ENV=3,04_DETAIL_OVERLAY=4,05_BUMP_DIFFUSE=5,06_BUMP_HEIGHT=6,07_DECAL_OVERLAY=7,08_SUBSURFACE=8,09_CUSTOM=9,10_CUSTOM_SECONDARY=10,11_OPACITY=11" ) ),
                     InputPortConfig<bool>( "RecommendedSettings",    true,       _HELP( "modify shader and lightning for optimal colors" ), "bRecommendedSettings" ),
-                    {0},
+                    InputPortConfig_Null(),
                 };
 
                 config.pInputPorts = inputs;

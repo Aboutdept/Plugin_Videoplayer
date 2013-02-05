@@ -82,7 +82,7 @@ namespace VideoplayerPlugin
                     InputPortConfig<Vec3>( "color_BGRGB",    Vec3( 0, 0, 0 ),  _HELP( "Background RGB color" ), "fBG_RGB", _UICONFIG( "" ) ),
                     InputPortConfig<float>( "BGAlpha",       0,                _HELP( "Alpha when set displays background to fill background" ), "fBG_Alpha" ),
                     InputPortConfig<int>( "ZOrder",          int( VZP_Default ), _HELP( "When should the video be drawn" ), "nZOrder", _UICONFIG( "enum_int:BehindMenu=0,AboveMenu=1" ) ),
-                    {0},
+                    InputPortConfig_Null(),
                 };
 
                 config.pInputPorts = inputs;

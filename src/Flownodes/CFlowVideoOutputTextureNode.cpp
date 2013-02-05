@@ -62,7 +62,7 @@ namespace VideoplayerPlugin
                 {
                     InputPortConfig_Void( "Get", _HELP( "Get texture info" ) ),
                     InputPortConfig<int>( "VideoID", -1, _HELP( "id" ), "nVideoID" ),
-                    {0},
+                    InputPortConfig_Null(),
                 };
 
                 static const SOutputPortConfig outputs[] =
@@ -70,7 +70,7 @@ namespace VideoplayerPlugin
                     OutputPortConfig_Void( "OnChanged", _HELP( "texture name/id changed" ) ),
                     OutputPortConfig<int>( "TextureID", _HELP( "texture id" ), "nTextureID" ),
                     OutputPortConfig<string>( "TextureName", _HELP( "texture name" ), "sTextureName" ),
-                    {0},
+                    OutputPortConfig_Null(),
                 };
 
                 config.pInputPorts = inputs;

@@ -184,7 +184,7 @@ namespace VideoplayerPlugin
 
                     InputPortConfig_Void( "Resume",                              _HELP( "Resume" ) ),
                     InputPortConfig_Void( "Pause",                               _HELP( "Pause" ) ),
-                    {0},
+                    InputPortConfig_Null(),
                 };
 
                 static const SOutputPortConfig outputs[] =
@@ -204,7 +204,7 @@ namespace VideoplayerPlugin
                     OutputPortConfig_Void( "OnVideoEnd2",                        _HELP( "Video2 end reached" ) ),
                     OutputPortConfig_Void( "OnVideoStart3",                      _HELP( "Video3 start reached" ) ),
                     OutputPortConfig_Void( "OnVideoEnd3",                        _HELP( "Video3 end reached" ) ),
-                    {0},
+                    OutputPortConfig_Null(),
                 };
 
                 config.pInputPorts = inputs;

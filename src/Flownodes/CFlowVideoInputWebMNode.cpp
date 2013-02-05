@@ -143,7 +143,7 @@ namespace VideoplayerPlugin
 
                     InputPortConfig_Void( "Seek",                                _HELP( "seeks to position" ) ),
                     InputPortConfig<float>( "PositionI",     0.0,                _HELP( "position for seek [sec]" ),                   "fPosition" ),
-                    {0},
+                    InputPortConfig_Null(),
                 };
 
                 static const SOutputPortConfig outputs[] =
@@ -157,7 +157,7 @@ namespace VideoplayerPlugin
                     OutputPortConfig<float>( "FPS",                              _HELP( "frames per second" ),                         "fFPS" ),
                     OutputPortConfig<int>( "Width",                              _HELP( "decoder width [px]" ),                        "nWidth" ),
                     OutputPortConfig<int>( "Height",                             _HELP( "decoder height [px]" ),                       "nHeight" ),
-                    {0},
+                    OutputPortConfig_Null(),
                 };
 
                 config.pInputPorts = inputs;
