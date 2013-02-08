@@ -109,6 +109,8 @@ namespace VideoplayerPlugin
             float vp_dropthreshold; //!< Threshold in seconds to trigger drops @see eDropMode
             float vp_dropmaxduration; //!< Maximal duration to drop at one time before outputting a frame again
 
+            ColorB vp_defaultcolor; //!< Default Video Color (if it hasn't started playing)
+
         private:
 
             int m_nFreeVideoId; //!< next video ID / free ID (could overflow in an extremly unlikly use case of creating 2^31-1 videos)

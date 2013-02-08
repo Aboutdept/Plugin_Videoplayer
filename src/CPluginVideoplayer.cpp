@@ -92,7 +92,7 @@ namespace VideoplayerPlugin
 
     const char* CPluginVideoplayer::ListCVars() const
     {
-        return "vp_playbackmode, vp_seekthreshold, vp_dropthreshold, vp_dropmaxduration";
+        return "vp_playbackmode, vp_seekthreshold, vp_dropthreshold, vp_dropmaxduration,vp_defaultcolor";
     }
 
     const char* CPluginVideoplayer::GetStatus() const

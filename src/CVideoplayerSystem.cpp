@@ -5,6 +5,7 @@
 #include <CPluginVideoplayer.h>
 #include <WebM/CWebMWrapper.h>
 #include <Playlist/CVideoplayerPlaylist.h>
+#include <PMUtils.hpp>
 
 VideoplayerPlugin::CVideoplayerSystem* gVideoplayerSystem = NULL;
 
@@ -86,6 +87,8 @@ namespace VideoplayerPlugin
                 gEnv->pConsole->UnregisterVariable( "vp_seekthreshold", true );
                 gEnv->pConsole->UnregisterVariable( "vp_dropthreshold", true );
                 gEnv->pConsole->UnregisterVariable( "vp_dropmaxduration", true );
+
+                gEnv->pConsole->RemoveCommand( "vp_defaultcolor" );
             }
         }
     }
@@ -549,6 +552,32 @@ namespace VideoplayerPlugin
         return m_bBlocked;
     }
 
+    void Command_DefaultColor( IConsoleCmdArgs* pArgs )
+    {
+        if ( !gVideoplayerSystem )
+        {
+            return;
+        }
+
+        if ( pArgs->GetArgCount() < 4 )
+        {
+            return;
+        }
+
+        // RGBA
+        int R = PluginManager::ParseString<int>( pArgs->GetArg( 1 ) );
+        int G = PluginManager::ParseString<int>( pArgs->GetArg( 2 ) );
+        int B = PluginManager::ParseString<int>( pArgs->GetArg( 3 ) );
+        int A = 255;
+
+        if ( pArgs->GetArgCount() > 4 )
+        {
+            A = PluginManager::ParseString<int>( pArgs->GetArg( 4 ) );
+        }
+
+        gVideoplayerSystem->vp_defaultcolor.set( R, G, B, A );
+    };
+
     bool CVideoplayerSystem::Initialize()
     {
 #if defined(VP_DISABLE_SYSTEM)
@@ -631,6 +660,10 @@ namespace VideoplayerPlugin
                 REGISTER_CVAR( vp_seekthreshold, SEEK_THRESHOLD, VF_NULL, "threshold in seconds after which seeks will be triggered" );
                 REGISTER_CVAR( vp_dropthreshold, DROP_THRESHOLD, VF_NULL, "threshold in seconds after which drops will be triggered" );
                 REGISTER_CVAR( vp_dropmaxduration, DROP_MAXDURATION, VF_NULL, "maximal duration to drop at one time before outputting a frame again" );
+
+                // register commands
+                vp_defaultcolor.set( 0, 0, 0, 255 );
+                gEnv->pConsole->AddCommand( "vp_defaultcolor", Command_DefaultColor, VF_NULL, CVARHELP( "set default video color | vp_defaultcolor R G B [A] (0-255)" ) );
             }
 
             else

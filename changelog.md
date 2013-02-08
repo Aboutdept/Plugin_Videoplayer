@@ -1,3 +1,14 @@
+Videoplayer Plugin 1.8 (08.02.2013)
+==============
+Stable Release for CryEngine 3.4.4 (32/64 bit, DX9 & DX11), Plugin SDK 1.2
+
+New:
+* Support for CryEngine 3.4.4
+* CVar for initial video frame color
+
+Known Limitations:
+* Plugin is partly disabled in 32bit launcher when using DX11
+
 Videoplayer Plugin 1.7 (19.11.2012)
 ==============
 Stable Release for CryEngine 3.4.3 (32/64 bit, DX9 & DX11), Plugin SDK 1.1

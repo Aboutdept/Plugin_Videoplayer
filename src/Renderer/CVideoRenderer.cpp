@@ -2,6 +2,7 @@
 
 #include <StdAfx.h>
 #include <CPluginVideoplayer.h>
+#include <CVideoplayerSystem.h>
 #include <Renderer/CVideoRenderer.h>
 #include <windows.h>
 
@@ -9,6 +10,33 @@
 
 namespace VideoplayerPlugin
 {
+    void initFillTexture( uint32_t* data, unsigned int nSize )
+    {
+        if ( !data || nSize <= 0 )
+        {
+            return;
+        }
+
+        uint32_t color = 0;
+
+        if ( gEnv->pRenderer->GetRenderType() == eRT_DX11 )
+        {
+            color = gVideoplayerSystem->vp_defaultcolor.pack_abgr8888();
+        }
+
+        else
+        {
+            color = gVideoplayerSystem->vp_defaultcolor.pack_argb8888();
+        }
+
+        unsigned int n = nSize / sizeof( uint32_t ) + 1;
+
+        while ( --n )
+        {
+            *( data++ ) = color;
+        }
+    }
+
     unsigned char* copyPlane( unsigned int cols, unsigned int lines, unsigned char* dst, unsigned int dstStride, unsigned char* src, unsigned int srcStride )
     {
         if ( srcStride == dstStride )

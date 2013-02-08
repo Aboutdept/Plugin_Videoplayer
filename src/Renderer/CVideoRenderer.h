@@ -70,6 +70,8 @@ namespace VideoplayerPlugin
         int mull;
     } SAlphaGenParam;
 
+    void initFillTexture( uint32_t* data, unsigned int nSize );
+
     unsigned char*  copyPlane( unsigned int cols, unsigned int lines, unsigned char* dst, unsigned int dstStride, unsigned char* src, unsigned int srcStride );
 
     template<eByteOrder COLOR_DST_FMT, eAlphaMode ALPHAMODE>
@@ -207,7 +209,7 @@ namespace VideoplayerPlugin
                 m_pData = new unsigned char[m_nSize];
 #endif
 
-                memset( m_pData, 255, m_nSize );
+                initFillTexture( ( uint32_t* )( m_pData ), m_nSize );
 
                 return m_pData;
             };
