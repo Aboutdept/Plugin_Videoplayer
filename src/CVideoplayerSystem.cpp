@@ -322,6 +322,7 @@ namespace VideoplayerPlugin
 
         // now thread safe (there could be some tearing but for now I don't do additional locking which would hurt performance)
         updateVideoResources( VRT_CE3 );
+        updateVideoResources( VRT_DX9 );
         updateVideoResources( VRT_DX11 );
     }
 
@@ -387,16 +388,17 @@ namespace VideoplayerPlugin
             SetScreenState( eSS_InGameScreen );
         }
 
+        // this is fixed
         // mark game loop as active (dx11 mode needs more since its called multiple times per frame atm)
-        if ( gD3DSystem )
-        {
-            m_nGameLoopActive = gD3DSystem->GetType() == D3DPlugin::D3D_DX9 ? 5 : 200;
-        }
-
-        else
-        {
-            m_nGameLoopActive = 5;
-        }
+        //if ( gD3DSystem )
+        //{
+        //    m_nGameLoopActive = // gD3DSystem->GetType() == D3DPlugin::D3D_DX9 ? 5 : 200;
+        //}
+        //
+        //else
+        //{
+        m_nGameLoopActive = 5;
+        //}
 
         if ( IsGameLoopActive() )
         {
@@ -414,11 +416,6 @@ namespace VideoplayerPlugin
 
             DrawAll(); // do the draw call (preferred place)
         }
-    }
-
-    void CVideoplayerSystem::OnPrePresent()
-    {
-        updateVideoResources( VRT_DX9 );
     }
 
     void CVideoplayerSystem::SetScreenState( const EScreenState state, bool bJustSet )

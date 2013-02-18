@@ -432,16 +432,17 @@ finished:
         }
     };
 
-    // TODO: Keep watching http://code.google.com/p/webm/issues/detail?id=162
+    // TODO: Keep watching http://code.google.com/p/webm/issues/detail?id=162 (regarding Zero Copy paradigm)
     void updateVideoResources( eRendererType nType )
     {
         Concurrency::critical_section::scoped_lock lock( csVideoResources );
 
-        // TODO: 32 bit DX11 Version will crash if this takes longer then 2-3 ms ingame so disable this for now.
-        if ( sizeof( void* ) == 4 && gEnv->pRenderer->GetRenderType() == eRT_DX11 && nType == VRT_CE3 && gVideoplayerSystem->GetScreenState() == eSS_InGameScreen )
-        {
-            return;
-        }
+        // This is finally fixed as far as I could test!
+        // 32 bit DX11 Version will crash if this takes longer then 2-3 ms ingame so disable this for now.
+        //if ( sizeof( void* ) == 4 && gEnv->pRenderer->GetRenderType() == eRT_DX11 && nType == VRT_CE3 && gVideoplayerSystem->GetScreenState() == eSS_InGameScreen )
+        //{
+        //    return;
+        //}
 
 #if !defined(VP_DISABLE_RENDER)
 

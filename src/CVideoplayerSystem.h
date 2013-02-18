@@ -143,7 +143,7 @@ namespace VideoplayerPlugin
         public:
 
             // see ID3DListener
-            virtual void OnPrePresent();
+            virtual void OnPrePresent() {};
             virtual void OnPostPresent() {};
             virtual void OnPreReset();
             virtual void OnPostReset();
