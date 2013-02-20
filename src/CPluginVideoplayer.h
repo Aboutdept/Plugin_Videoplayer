@@ -13,6 +13,7 @@
 
 #define PLUGIN_NAME "Videoplayer"
 #define PLUGIN_CONSOLE_PREFIX "[" PLUGIN_NAME " " PLUGIN_TEXT "] " //!< Prefix for Logentries by this plugin
+#define PLUGIN_UIEVENTSYSTEM PLUGIN_TEXT "_" PLUGIN_NAME
 
 namespace VideoplayerPlugin
 {

@@ -2,6 +2,8 @@
 
 #include <Playlist/IVideoplayerPlaylist.h>
 
+#include <IFlashUI.h>
+
 #pragma once
 
 namespace VideoplayerPlugin
@@ -14,6 +16,20 @@ namespace VideoplayerPlugin
             IVideoplayerPlaylist* m_pMenu;
             IVideoplayerPlaylist* m_pMenuIngame;
             IVideoplayerPlaylist* m_pLevelLoaded;
+
+            enum EUIEvent
+            {
+                eUIE_OnAutoplaylist_SplashscreenStart,
+                eUIE_OnAutoplaylist_SplashscreenEnd,
+                eUIE_OnAutoplaylist_LevelLoadedStart,
+                eUIE_OnAutoplaylist_LevelLoadedEnd,
+            };
+
+            // UI Events
+            SUIEventSenderDispatcher<EUIEvent> m_eventSender;
+            IUIEventSystem* m_pUIFunctions;
+            void InitEventSystem();
+            void UnloadEventSystem();
 
         public:
             CAutoPlaylists();
