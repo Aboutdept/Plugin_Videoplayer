@@ -12,7 +12,7 @@ namespace VideoplayerPlugin
         m_pUIFunctions = NULL;
         InitEventSystem();
 
-        m_pSplashScreen = gVideoplayerSystem->CreatePlaylist( true ); // Only for Playlist the default is to show the menu
+        m_pSplashScreen = gVideoplayerSystem->CreatePlaylist( true ); // Only for splash screen playlist the default is to show the menu after end
         m_pMenu = gVideoplayerSystem->CreatePlaylist();
         m_pMenuIngame = gVideoplayerSystem->CreatePlaylist();
         m_pLevelLoaded = gVideoplayerSystem->CreatePlaylist();
@@ -42,8 +42,6 @@ namespace VideoplayerPlugin
                 gVideoplayerSystem->DeletePlaylist( m_pLevelLoaded );
             }
         }
-
-        UnloadEventSystem();
     }
 
     void CAutoPlaylists::OnSkip( bool bForce )
@@ -73,7 +71,6 @@ namespace VideoplayerPlugin
     {
         if ( m_pSplashScreen )
         {
-            //  m_pSplashScreen->UnregisterListener(this);
             m_pSplashScreen->Close();
         }
 
@@ -103,13 +100,13 @@ namespace VideoplayerPlugin
 
             if ( m_pSplashScreen->Open( AUTOPLAY_SPLASHSCREEN ) )
             {
-                gVideoplayerSystem->ShowMenu( false );
+                gVideoplayerSystem->ShowMenu( false ); // not needed if UI Events are used in sys_statecontrol
                 m_pSplashScreen->Resume();
             }
 
             else
             {
-                OnEndPlaylist( m_pSplashScreen );
+                OnEndPlaylist( m_pSplashScreen ); // Broadcast UI Event anyways..
             }
         }
 
@@ -140,7 +137,7 @@ namespace VideoplayerPlugin
 
             if ( gVideoplayerSystem->GetScreenState() == eSS_StartScreen )
             {
-                OnMenu( false );
+                OnMenu( false ); // Now start Menu Playlist
             }
         }
 
@@ -184,7 +181,7 @@ namespace VideoplayerPlugin
 
             else
             {
-                OnEndPlaylist( m_pLevelLoaded );
+                OnEndPlaylist( m_pLevelLoaded ); // Broadcast UI Event anyways..
             }
         }
     }
@@ -218,10 +215,5 @@ namespace VideoplayerPlugin
             SUIEventDesc evtDesc( "Autoplaylist:LevelLoaded:OnEnd", "Triggered when the level video play list ended or was skipped" );
             m_eventSender.RegisterEvent<eUIE_OnAutoplaylist_LevelLoadedEnd>( evtDesc );
         }
-    }
-
-    void CAutoPlaylists::UnloadEventSystem()
-    {
-
     }
 }
