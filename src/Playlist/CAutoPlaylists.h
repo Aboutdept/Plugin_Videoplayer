@@ -17,7 +17,7 @@ namespace VideoplayerPlugin
         private:
             IVideoplayerPlaylist* m_pSplashScreen; //!< Splashscreen Playlist
             IVideoplayerPlaylist* m_pMenu; //!< Mainmenu Playlist
-            IVideoplayerPlaylist* m_pMenuIngame; //!< Ingame Menu Playlist 
+            IVideoplayerPlaylist* m_pMenuIngame; //!< Ingame Menu Playlist
             IVideoplayerPlaylist* m_pLevelLoaded; //!< Level Introduction Playlist
 
             /**

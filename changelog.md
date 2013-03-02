@@ -1,6 +1,6 @@
-Videoplayer Plugin 1.8.1 (23.02.2013)
+Videoplayer Plugin 1.9.0 (02.03.2013)
 ==============
-Stable Release for CryEngine 3.4.4 (32/64 bit, DX9 & DX11), Plugin SDK 1.2, Plugin_D3D 1.8.1
+Stable Release for CryEngine 3.4.5 (32/64 bit, DX9 & DX11), Plugin SDK 1.3, Plugin_D3D 1.9.0
 
 New:
 * UI Events (UI:Events:Autoplaylist:Splashscreen and LevelLoaded)
