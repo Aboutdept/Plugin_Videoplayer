@@ -45,11 +45,11 @@ Developers
 
 CVars
 =====
-* See [Wiki: CVar Commands](https://github.com/hendrikp/Plugin_SDK/wiki/CVar-Commands)
+* See [Wiki: CVar Commands](https://github.com/hendrikp/Plugin_Videoplayer/wiki/CVar-Commands)
 
 Flownodes
 =========
-* See [Wiki: Flownodes](https://github.com/hendrikp/Plugin_SDK/wiki/Flownodes)
+* See [Wiki: Flownodes](https://github.com/hendrikp/Plugin_Videoplayer/wiki/Flownodes)
 
 Playlists
 =========
