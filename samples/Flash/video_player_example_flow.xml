@@ -1,0 +1,43 @@
+<Graph Description="" Group="" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="1" Class="UI:Display:Display" pos="-380,-120,0" flags="0">
+   <Inputs uiElements_Element="Video_player_example" instanceID="-1"/>
+  </Node>
+  <Node Id="2" Class="Start" pos="-578,-10,0" flags="0">
+   <Inputs InGame="1" InEditor="1"/>
+  </Node>
+  <Node Id="3" Class="UI:Display:Display" pos="-400,420,0" flags="1">
+   <Inputs uiElements_Element="Gestionnaire_menu" instanceID="-1"/>
+  </Node>
+  <Node Id="4" Class="Time:Delay" pos="-650,740,0" flags="0">
+   <Inputs delay="1"/>
+  </Node>
+  <Node Id="5" Class="Start" pos="-850,750,0" flags="0">
+   <Inputs InGame="1" InEditor="1"/>
+  </Node>
+  <Node Id="6" Class="Videoplayer_Plugin:InputWebM" pos="-380,50,0" flags="0">
+   <Inputs file_File="documentation/theatrepompee/images_zoom/logo_cryengine3.webm" sound_Sound="" Loop="1" Skippable="0" BlockGame="0" StartAt="0" EndAfter="0" CustomWidth="-1" CustomHeight="-1" TimeSource="3" DropMode="6" Speed="1" PositionI="0"/>
+  </Node>
+  <Node Id="7" Class="Input:Key" pos="-650,100,0" flags="0">
+   <Inputs Key="j" NonDevMode="0"/>
+  </Node>
+  <Node Id="8" Class="Videoplayer_Plugin:OutputTexture" pos="110,60,0" flags="0">
+   <Inputs VideoID="-1"/>
+  </Node>
+  <Node Id="9" Class="GFx:LoadTexIntoMc" pos="340,60,0" flags="0">
+   <Inputs InstanceID="0" Texture="" uiMovieclips_MovieClip="Video_player_example:video_mc_example"/>
+  </Node>
+  <Node Id="10" Class="UI:MovieClip:PosRotScale" pos="340,150,0" flags="0">
+   <Inputs uiMovieclips_MovieClips="Video_player_example:video_mc_example" instanceID="0" Pos="100,100,100" Rot="1,1,45" Scale="0.5,0.5,0.5"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="4" nodeOut="5" portIn="in" portOut="output" enabled="1"/>
+  <Edge nodeIn="8" nodeOut="6" portIn="Get" portOut="OnStart" enabled="1"/>
+  <Edge nodeIn="8" nodeOut="6" portIn="VideoID" portOut="VideoID" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="8" portIn="Set" portOut="OnChanged" enabled="1"/>
+  <Edge nodeIn="9" nodeOut="8" portIn="Texture" portOut="TextureName" enabled="1"/>
+  <Edge nodeIn="10" nodeOut="8" portIn="Set" portOut="OnChanged" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>

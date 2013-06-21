@@ -1,3 +1,4 @@
 Hendrik Polczynski <hendrikpolczyn at gmail dot com>
 Nils L. Corneliusen - YUV Conversion <http://ignorantus.com>
 Oliver Neumann <1beast at web dot de> - UI events
+Nicolas Lefèvre - Scaleform/Flash tutorial and sample

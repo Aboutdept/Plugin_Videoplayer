@@ -1,3 +1,13 @@
+Videoplayer Plugin 2.0 (TBD)
+==============
+Stable Release for CryEngine 3.5
+
+New:
+* Flash/Scaleform Samples
+
+Thanks to:
+* Nicolas Lefèvre for the Samples/Tutorials
+
 Videoplayer Plugin 1.9.0 (02.03.2013)
 ==============
 Stable Release for CryEngine 3.4.5 (32/64 bit, DX9 & DX11), Plugin SDK 1.3, Plugin_D3D 1.9.0

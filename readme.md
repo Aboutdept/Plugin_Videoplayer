@@ -6,7 +6,7 @@ Videoplayer for CryEngine featuring WebM, DirectX 9, DirectX 11 Support
 Features
 --------
 * Create Video Splashscreens / Menubackgrounds
-* Replace any ingame 3D Entity/Material/Texture with a video (from the filesystem or in pak file)
+* Replace any ingame 3D Entity/Material/Texture/Flash Movieclip with a video (from the filesystem or in pak file)
 * Looping / Custom resolution / Seeking / Pause / Speed
 * Play multiple video streams and reuse them on multiple targets
 * Fullscreen/2D Videosupport (multiple videos also possible)

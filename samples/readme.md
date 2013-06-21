@@ -9,6 +9,7 @@ Content
 * Menu Background video
 * Video with set up FMOD sound project
 * Monitor/TV assets
+* Flash/Scaleform Flowgraph/Project/Events
 
 These samples require
 ---------------------
