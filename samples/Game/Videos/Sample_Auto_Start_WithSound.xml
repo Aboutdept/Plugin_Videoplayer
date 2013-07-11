@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Videoplayer>
-  <Scene Skippable="1">
+  <Scene Skippable="1" If="System.GetCVar('g_skipintro') == 0">
      <Input Class="InputWebM" Video="Videos\tearsofsteel_teaser\tearsofsteel_teaser.webm" Sound="Videos/tearsofsteel_teaser:tearsofsteel:test">
 	<Output Class="Output2D" SoundSource="1"/>
      </Input>
