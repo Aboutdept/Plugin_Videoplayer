@@ -24,9 +24,10 @@ Tutorial videos
 * [Part 2: 1.5 Features and Playlists](http://www.youtube.com/watch?v=AGEEjqRHfTU)
 * [Part 1: Introduction and Howto play video on ingame objects](http://www.youtube.com/watch?v=g0feGWMsSCE) (Version 1.0.1 so expect some differences)
 
-Sound Setup
-===========
-* See [Wiki: Creating FMOD Soundevents](https://github.com/hendrikp/Plugin_Videoplayer/wiki/Creating-FMOD-Soundevents)
+Preparing a video with audio
+============================
+* See [Wiki: Preparing a video with audio](https://github.com/hendrikp/Plugin_Videoplayer/wiki/Preparing-Video-and-Audio)
+* FMOD Sound Tutorial see [Wiki: Creating FMOD Soundevents](https://github.com/hendrikp/Plugin_Videoplayer/wiki/Creating-FMOD-Soundevents)
 
 Installation / Integration
 ==========================
