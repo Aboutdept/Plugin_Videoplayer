@@ -37,6 +37,7 @@ The plugin manager will automatically load up the plugin when the game/editor is
 Users
 -----
 * Use the installer or extract the files to your CryEngine SDK Folder so that the Code and BinXX/Plugins directory match up.
+* Make sure that you also install the Direct3D Plugin if you want playback not just in the menu but ingame too. (Else the playback will be unstable/crash)
 
 Designers
 ---------
