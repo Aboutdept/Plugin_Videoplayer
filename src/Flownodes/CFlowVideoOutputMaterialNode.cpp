@@ -1,9 +1,9 @@
 /* Videoplayer_Plugin - for licensing and copyright see license.txt */
 
 #include <StdAfx.h>
+#include <IPluginVideoplayer.h>
 #include <Nodes/G2FlowBaseNode.h>
 #include <CPluginVideoplayer.h>
-#include <IPluginVideoplayer.h>
 #include <CVideoplayerSystem.h>
 
 namespace VideoplayerPlugin

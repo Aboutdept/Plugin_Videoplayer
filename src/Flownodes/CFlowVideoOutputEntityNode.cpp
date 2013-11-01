@@ -1,9 +1,9 @@
 /* Videoplayer_Plugin - for licensing and copyright see license.txt */
 
 #include <StdAfx.h>
+#include <IPluginVideoplayer.h>
 #include <Nodes/G2FlowBaseNode.h>
 #include <CPluginVideoplayer.h>
-#include <IPluginVideoplayer.h>
 #include <ICryAnimation.h>
 #include <CVideoplayerSystem.h>
 
@@ -137,7 +137,11 @@ namespace VideoplayerPlugin
                                         if ( slotInfo.pCharacter )
                                         {
                                             // TODO maybe move later to character node
+#if CDK_VERSION < 350
                                             gVideoplayerSystem->OverrideMaterial( m_pVideo, slotInfo.pCharacter->GetMaterial(), GetPortInt( pActInfo, EIP_SUBMAT ), GetPortInt( pActInfo, EIP_TEXSLOT ), GetPortBool( pActInfo, EIP_RECOMMENDED ) );
+#else
+                                            gVideoplayerSystem->OverrideMaterial( m_pVideo, slotInfo.pCharacter->GetIMaterial_Instance(), GetPortInt( pActInfo, EIP_SUBMAT ), GetPortInt( pActInfo, EIP_TEXSLOT ), GetPortBool( pActInfo, EIP_RECOMMENDED ) );
+#endif
                                         }
 
                                         if ( slotInfo.pStatObj )
@@ -189,8 +193,12 @@ namespace VideoplayerPlugin
                                 {
                                     if ( slotInfo.pCharacter )
                                     {
+#if CDK_VERSION < 350
                                         // TODO maybe move later to character node
                                         gVideoplayerSystem->ResetMaterial( slotInfo.pCharacter->GetMaterial(), GetPortInt( pActInfo, EIP_SUBMAT ), true );
+#else
+                                        gVideoplayerSystem->ResetMaterial( slotInfo.pCharacter->GetIMaterial_Instance(), GetPortInt( pActInfo, EIP_SUBMAT ), true );
+#endif
                                     }
 
                                     if ( slotInfo.pStatObj )

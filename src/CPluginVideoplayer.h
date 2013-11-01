@@ -2,10 +2,10 @@
 
 #pragma once
 
+#include <IPluginBase.h>
 #include <Game.h>
 
 #include <IPluginManager.h>
-#include <IPluginBase.h>
 #include <CPluginBase.hpp>
 
 #include <IPluginD3D.h>
@@ -41,7 +41,7 @@ namespace VideoplayerPlugin
 
             const char* GetVersion() const
             {
-                return "1.9.0.0";
+                return "2.0.0.0";
             };
 
             const char* GetName() const

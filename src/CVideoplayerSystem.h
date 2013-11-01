@@ -2,9 +2,10 @@
 
 #pragma once
 
-#include <Game.h>
 #include <IPluginD3D.h>
 #include "IPluginVideoplayer.h"
+
+#include <Game.h>
 #include <map>
 #include <Playlist/CAutoPlaylists.h>
 

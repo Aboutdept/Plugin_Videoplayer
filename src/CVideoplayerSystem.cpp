@@ -44,7 +44,7 @@ namespace VideoplayerPlugin
         m_pVideos.clear();
         m_p2DVideos.clear();
 
-        if ( gEnv && gEnv->pGameFramework && gEnv->pSystem )
+        if ( gEnv && gEnv->pGame && gEnv->pGame->GetIGameFramework() && gEnv->pSystem )
         {
             // Game still active
             if ( m_pAutoPlaylists )
@@ -57,7 +57,7 @@ namespace VideoplayerPlugin
             ReleaseMaterials(); // Reset/Release also the Engine Materials
 
             // Remove Listeners so that there are no calls into deleted system
-            gEnv->pGameFramework->UnregisterListener( this );
+            gEnv->pGame->GetIGameFramework()->UnregisterListener( this );
 
             ISystemEventDispatcher* pDispatcher = gEnv->pSystem->GetISystemEventDispatcher();
 
@@ -66,14 +66,14 @@ namespace VideoplayerPlugin
                 pDispatcher->RemoveListener( this );
             }
 
-            ILevelSystem* pLevelSystem = gEnv->pGameFramework->GetILevelSystem();
+            ILevelSystem* pLevelSystem = gEnv->pGame->GetIGameFramework()->GetILevelSystem();
 
             if ( pLevelSystem )
             {
                 pLevelSystem->RemoveListener( this );
             }
 
-            IActionMapManager* pAMManager = gEnv->pGameFramework->GetIActionMapManager();
+            IActionMapManager* pAMManager = gEnv->pGame->GetIGameFramework()->GetIActionMapManager();
 
             if ( pAMManager )
             {
@@ -360,32 +360,35 @@ namespace VideoplayerPlugin
 
     void CVideoplayerSystem::OnPostUpdate( float fDeltaTime )
     {
-        bool isGamePaused = gEnv->pGameFramework->IsGamePaused();
-
-        // Handle some additional screen states
-        if ( m_bBlocked )
+        if ( gEnv->pGame && gEnv->pGame->GetIGameFramework() )
         {
-            SetScreenState( eSS_BlockedScreen );
-        }
+            bool isGamePaused = gEnv->pGame->GetIGameFramework()->IsGamePaused();
 
-        else if ( m_currentScreenState == eSS_Initialize && IsGameLoopActive() )
-        {
-            SetScreenState( eSS_StartScreen );
-        }
+            // Handle some additional screen states
+            if ( m_bBlocked )
+            {
+                SetScreenState( eSS_BlockedScreen );
+            }
 
-        else if ( m_currentScreenState != eSS_Initialize && m_currentScreenState != eSS_StartScreen && !gEnv->pGameFramework->IsGameStarted() )
-        {
-            SetScreenState( eSS_Menu );
-        }
+            else if ( m_currentScreenState == eSS_Initialize && IsGameLoopActive() )
+            {
+                SetScreenState( eSS_StartScreen );
+            }
 
-        else if ( m_currentScreenState == eSS_InGameScreen && isGamePaused )
-        {
-            SetScreenState( eSS_PausedScreen );
-        }
+            else if ( m_currentScreenState != eSS_Initialize && m_currentScreenState != eSS_StartScreen && !gEnv->pGame->GetIGameFramework()->IsGameStarted() )
+            {
+                SetScreenState( eSS_Menu );
+            }
 
-        else if ( m_currentScreenState == eSS_PausedScreen && !isGamePaused )
-        {
-            SetScreenState( eSS_InGameScreen );
+            else if ( m_currentScreenState == eSS_InGameScreen && isGamePaused )
+            {
+                SetScreenState( eSS_PausedScreen );
+            }
+
+            else if ( m_currentScreenState == eSS_PausedScreen && !isGamePaused )
+            {
+                SetScreenState( eSS_InGameScreen );
+            }
         }
 
         // this is fixed
@@ -464,13 +467,18 @@ namespace VideoplayerPlugin
         return m_currentScreenState;
     }
 }
+
+#if CDK_VERSION < 350
 #include "HUD/UIMenuEvents.h"
+#else
+#include "UI/UIMenuEvents.h"
+#endif
 
 namespace VideoplayerPlugin
 {
     void CVideoplayerSystem::ShowMenu( bool bShow )
     {
-        if ( gEnv && gEnv->pFlashUI && gEnv->pGameFramework )
+        if ( gEnv && gEnv->pFlashUI && gEnv->pGame && gEnv->pGame->GetIGameFramework() )
         {
             // Scaleform UI active
             string sSystem = "";
@@ -488,7 +496,7 @@ namespace VideoplayerPlugin
 
             else
             {
-                if ( gEnv->pGameFramework->IsGameStarted() )
+                if ( gEnv->pGame->GetIGameFramework()->IsGameStarted() )
                 {
                     sSystem = "MenuEvents";
                     sEvent = "OnStartIngameMenu";
@@ -524,11 +532,11 @@ namespace VideoplayerPlugin
     void CVideoplayerSystem::BlockGameForVideo( bool bBlock )
     {
         // Trigger a pause without going to menu to play menu in the foreground
-        if ( gEnv && gEnv->pGameFramework )
+        if ( gEnv && gEnv->pGame && gEnv->pGame->GetIGameFramework() )
         {
-            if ( !gEnv->bMultiplayer && gEnv->pGameFramework->IsGameStarted() )
+            if ( !gEnv->bMultiplayer &&  gEnv->pGame->GetIGameFramework()->IsGameStarted() )
             {
-                gEnv->pGameFramework->PauseGame( bBlock, true );
+                gEnv->pGame->GetIGameFramework()->PauseGame( bBlock, true );
                 m_bBlocked = bBlock;
 
                 if ( m_bBlocked )
@@ -598,9 +606,9 @@ namespace VideoplayerPlugin
         if ( gEnv )
         {
             // register listeners
-            if ( gEnv->pGameFramework )
+            if ( gEnv->pGame && gEnv->pGame->GetIGameFramework() )
             {
-                gEnv->pGameFramework->RegisterListener( this, "Video", eFLPriority_Menu );
+                gEnv->pGame->GetIGameFramework()->RegisterListener( this, "Video", eFLPriority_Menu );
 
                 ISystemEventDispatcher* pDispatcher = gEnv->pSystem->GetISystemEventDispatcher();
 
@@ -614,7 +622,7 @@ namespace VideoplayerPlugin
                     gPlugin->LogError( "ISystemEventDispatcher == NULL" );
                 }
 
-                ILevelSystem* pLevelSystem = gEnv->pGameFramework->GetILevelSystem();
+                ILevelSystem* pLevelSystem = gEnv->pGame->GetIGameFramework()->GetILevelSystem();
 
                 if ( pLevelSystem )
                 {
@@ -626,14 +634,14 @@ namespace VideoplayerPlugin
                     gPlugin->LogError( "ILevelSystem == NULL" );
                 }
 
-                IActionMapManager* pAMManager = gEnv->pGameFramework->GetIActionMapManager();
+                IActionMapManager* pAMManager = gEnv->pGame->GetIGameFramework()->GetIActionMapManager();
 
                 if ( pAMManager )
                 {
                     pAMManager->AddExtraActionListener( this );
 
                     // register filters //TODO
-                    m_pOnlySkipFilter = gEnv->pGameFramework->GetIActionMapManager()->CreateActionFilter( "video_onlyskip", eAFT_ActionPass );
+                    m_pOnlySkipFilter = gEnv->pGame->GetIGameFramework()->GetIActionMapManager()->CreateActionFilter( "video_onlyskip", eAFT_ActionPass );
 
                     //m_pOnlySkipFilter->Filter("ui_skip_video");
                     //m_pOnlySkipFilter->Enable(true);

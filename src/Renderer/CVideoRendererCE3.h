@@ -1,5 +1,6 @@
 /* Videoplayer_Plugin - for licensing and copyright see license.txt */
 
+#include <IPluginVideoplayer.h>
 #include <Renderer/CVideoRenderer.h>
 #include <Game.h>
 

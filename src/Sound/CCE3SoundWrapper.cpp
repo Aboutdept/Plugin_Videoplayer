@@ -1,8 +1,8 @@
 /* Videoplayer_Plugin - for licensing and copyright see license.txt */
 
 #include <StdAfx.h>
-#include <CVideoplayerSystem.h>
 #include "CCE3SoundWrapper.h"
+#include <CVideoplayerSystem.h>
 #include <IMovieSystem.h>
 
 #undef PlaySound // undefine Windows PlaySound Macro
@@ -210,7 +210,11 @@ namespace VideoplayerPlugin
 
                 if ( !this->pSoundProxy )
                 {
+#if CDK_VERSION < 350
                     this->pSoundProxy = ( IEntitySoundProxy* )this->pEntity->CreateProxy( ENTITY_PROXY_SOUND );
+#else
+                    this->pSoundProxy = ( IEntitySoundProxy* ) & ( *( this->pEntity->CreateProxy( ENTITY_PROXY_SOUND ) ) );
+#endif
                 }
             }
         }
