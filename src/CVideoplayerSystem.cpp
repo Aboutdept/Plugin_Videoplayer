@@ -44,27 +44,20 @@ namespace VideoplayerPlugin
         m_pVideos.clear();
         m_p2DVideos.clear();
 
-        if ( gEnv && gEnv->pGame && gEnv->pGame->GetIGameFramework() && gEnv->pSystem )
+        // Game still active
+        if ( m_pAutoPlaylists )
         {
-            // Game still active
-            if ( m_pAutoPlaylists )
-            {
-                // Playlists avaible -> Cleanup
-                delete m_pAutoPlaylists;
-                m_pAutoPlaylists = NULL;
-            }
+            // Playlists avaible -> Cleanup
+            delete m_pAutoPlaylists;
+            m_pAutoPlaylists = NULL;
+        }
 
+        if ( gEnv && gEnv->pGame && gEnv->pGame->GetIGameFramework() )
+        {
             ReleaseMaterials(); // Reset/Release also the Engine Materials
 
             // Remove Listeners so that there are no calls into deleted system
             gEnv->pGame->GetIGameFramework()->UnregisterListener( this );
-
-            ISystemEventDispatcher* pDispatcher = gEnv->pSystem->GetISystemEventDispatcher();
-
-            if ( pDispatcher )
-            {
-                pDispatcher->RemoveListener( this );
-            }
 
             ILevelSystem* pLevelSystem = gEnv->pGame->GetIGameFramework()->GetILevelSystem();
 
@@ -79,17 +72,27 @@ namespace VideoplayerPlugin
             {
                 pAMManager->RemoveExtraActionListener( this );
             }
+        }
 
-            // unregister cvars
-            if ( gEnv->pConsole )
+        if ( gEnv && gEnv->pSystem )
+        {
+            ISystemEventDispatcher* pDispatcher = gEnv->pSystem->GetISystemEventDispatcher();
+
+            if ( pDispatcher )
             {
-                gEnv->pConsole->UnregisterVariable( "vp_playbackmode", true );
-                gEnv->pConsole->UnregisterVariable( "vp_seekthreshold", true );
-                gEnv->pConsole->UnregisterVariable( "vp_dropthreshold", true );
-                gEnv->pConsole->UnregisterVariable( "vp_dropmaxduration", true );
-
-                gEnv->pConsole->RemoveCommand( "vp_defaultcolor" );
+                pDispatcher->RemoveListener( this );
             }
+        }
+
+        // unregister cvars
+        if ( gEnv && gEnv->pConsole )
+        {
+            gEnv->pConsole->UnregisterVariable( "vp_playbackmode", true );
+            gEnv->pConsole->UnregisterVariable( "vp_seekthreshold", true );
+            gEnv->pConsole->UnregisterVariable( "vp_dropthreshold", true );
+            gEnv->pConsole->UnregisterVariable( "vp_dropmaxduration", true );
+
+            gEnv->pConsole->RemoveCommand( "vp_defaultcolor" );
         }
     }
 
