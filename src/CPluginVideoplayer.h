@@ -74,6 +74,8 @@ namespace VideoplayerPlugin
             {
                 return static_cast<PluginManager::IPluginBase*>( this );
             };
+
+            bool RegisterTypes( int nFactoryType, bool bUnregister );
     };
 
     extern CPluginVideoplayer* gPlugin;

@@ -35,12 +35,12 @@ namespace VideoplayerPlugin
             SUIEventSenderDispatcher<EUIEvent> m_eventSender; //!< Dispatches our messages to the UI Event Flownodes
             IUIEventSystem* m_pUIFunctions; //!< Pointer to UI Event System containing Video Events
 
+        public:
             /**
             * @brief Initializes/Registers the UI Event System (can't be unregistered once registered)
             */
             void InitEventSystem();
 
-        public:
             CAutoPlaylists();
             ~CAutoPlaylists();
 

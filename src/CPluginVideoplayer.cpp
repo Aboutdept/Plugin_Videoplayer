@@ -104,4 +104,76 @@ namespace VideoplayerPlugin
     {
         return static_cast < IPluginVideoplayer* > ( gVideoplayerSystem );
     };
+
+    bool CPluginVideoplayer::RegisterTypes( int nFactoryType, bool bUnregister )
+    {
+        // Note: Autoregister Flownodes will be automatically registered by the Base class
+        bool bRet = CPluginBase::RegisterTypes( nFactoryType, bUnregister );
+
+        using namespace PluginManager;
+        eFactoryType enFactoryType = eFactoryType( nFactoryType );
+
+        if ( bRet )
+        {
+            if ( gEnv && gEnv->pSystem && !gEnv->pSystem->IsQuitting() )
+            {
+                // UI Events
+                if ( gEnv->pConsole && ( enFactoryType == FT_All || enFactoryType == FT_UIEvent ) )
+                {
+                    if ( !bUnregister )
+                    {
+                        if ( gVideoplayerSystem && gVideoplayerSystem->m_pAutoPlaylists )
+                        {
+                            gVideoplayerSystem->m_pAutoPlaylists->InitEventSystem();
+                        }
+                    }
+                }
+
+                // CVars
+                if ( gEnv->pConsole && ( enFactoryType == FT_All || enFactoryType == FT_CVar ) )
+                {
+                    if ( !bUnregister )
+                    {
+                        // TODO: Register CVars here if you have some
+                        // ...
+                    }
+
+                    else
+                    {
+                        // TODO: Unregister CVars here if you have some
+                        // ...
+                    }
+                }
+
+                // CVars Commands
+                if ( gEnv->pConsole && ( enFactoryType == FT_All || enFactoryType == FT_CVarCommand ) )
+                {
+                    if ( !bUnregister )
+                    {
+                        // TODO: Register CVar Commands here if you have some
+                        // ...
+                    }
+
+                    else
+                    {
+                        // TODO: Unregister CVar Commands here if you have some
+                        // ...
+                    }
+                }
+
+                // Game Objects
+                if ( gEnv->pGame && gEnv->pGame->GetIGameFramework() && ( enFactoryType == FT_All || enFactoryType == FT_GameObjectExtension ) )
+                {
+                    if ( !bUnregister )
+                    {
+                        // TODO: Register Game Object Extensions here if you have some
+                        // ...
+                    }
+                }
+            }
+        }
+
+        return bRet;
+    }
+
 }

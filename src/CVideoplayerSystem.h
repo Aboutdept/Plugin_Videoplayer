@@ -112,6 +112,8 @@ namespace VideoplayerPlugin
 
             ColorB vp_defaultcolor; //!< Default Video Color (if it hasn't started playing)
 
+            CAutoPlaylists* m_pAutoPlaylists; //!< Automatic Playlist
+
         private:
 
             int m_nFreeVideoId; //!< next video ID / free ID (could overflow in an extremly unlikly use case of creating 2^31-1 videos)
@@ -121,11 +123,10 @@ namespace VideoplayerPlugin
             tOverrideMap m_Overrides; //!< material 1:N override relation
             t2DVideos m_p2DVideos; //!< 2D video information of active 2D video window
 
-
             int m_nGameLoopActive; //!< If <0 then game loop inactive
             int m_nD3DActive; //!< If <0 then the D3D system is inactive
             float m_fFrameTime; //!< current frame time
-            CAutoPlaylists* m_pAutoPlaylists; //!< Automatic Playlist
+
             IActionFilter* m_pOnlySkipFilter; //!< Input filter for Skip Events
 
             EScreenState m_currentScreenState; //!< current screen state

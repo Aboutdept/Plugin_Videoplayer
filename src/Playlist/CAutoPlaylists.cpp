@@ -10,7 +10,6 @@ namespace VideoplayerPlugin
     CAutoPlaylists::CAutoPlaylists()
     {
         m_pUIFunctions = NULL;
-        InitEventSystem();
 
         m_pSplashScreen = gVideoplayerSystem->CreatePlaylist( true ); // Only for splash screen playlist the default is to show the menu after end
         m_pMenu = gVideoplayerSystem->CreatePlaylist();
