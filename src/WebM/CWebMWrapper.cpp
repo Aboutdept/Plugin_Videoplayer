@@ -720,11 +720,28 @@ namespace VideoplayerPlugin
             {
                 // Trigger seek
 #ifdef _DEBUG
-                gPlugin->LogWarning( "Advance Seek id(%d) frames(%u) diff(%.2f) current(%.2fs) target(%.2fs)",  m_nVideoId, uFrames, fDifference, m_fTimerNextFrame, m_fTimer );
+                gPlugin->LogWarning( "Advance Seek id(%d) frames(%u) diff(%.2f) current(%.2fs) target(%.2fs) fActualDelta(%.4f) fEnd(%.2f)",  m_nVideoId, uFrames, fDifference, m_fTimerNextFrame, m_fTimer, fActualDelta, fEnd );
 #endif
 
-                Seek( m_fTimer );
-                return;
+                // This fixes a small problem in splashscreen videos (where high system load causes framedrop but a seek will jump to beginning because of no keyframes)
+                if ( fEnd > VIDEO_EPSILON && ( ( m_fTimer > ( fEnd - VIDEO_EPSILON ) ) || ( fEnd < gVideoplayerSystem->vp_seekthreshold * 4 ) ) )
+                {
+#ifdef _DEBUG
+                    gPlugin->LogWarning( "Advance Seek ignored due to near end/short video" );
+#endif
+                    m_fTimer = m_fTimerNextFrame;
+                    uFrames = 1;
+                    uMaxDrop = 0;
+                    bNeedDrop = false;
+                    bNeedSeek = false;
+
+                }
+
+                else
+                {
+                    Seek( m_fTimer );
+                    return;
+                }
             }
 
             bool bDirty;
