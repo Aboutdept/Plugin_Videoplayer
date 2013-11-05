@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Videoplayer>
+  <Scene>
+     <Input Class="InputWebM" Video="Videos\logo_cryengine3\logo_cryengine3.webm">
+     </Input>
+  </Scene>
+  <Scene>
+     <Input Class="InputWebM" Video="Videos\logo_gameware.webm">
+     </Input>
+  </Scene>
+</Videoplayer>

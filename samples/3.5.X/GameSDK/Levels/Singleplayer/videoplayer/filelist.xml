@@ -1,0 +1,7 @@
+<download name="videoplayer" type="Map">
+ <index src="filelist.xml" dest="filelist.xml"/>
+ <files>
+  <file src="level.pak" dest="level.pak" size="171681" md5="f6042a6b2f4a21334a2003b45e718250"/>
+  <file src="videoplayer.xml" dest="videoplayer.xml" size="258" md5="3191132d11286748016a27b93a285fec"/>
+ </files>
+</download>

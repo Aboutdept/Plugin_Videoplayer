@@ -1,3 +1,19 @@
+Sample Level (videoplayer.cry)
+========================
+Copyright (c) 2013, Hendrik Polczynski
+
+ This work is licensed under a Creative Commons Attribution 3.0 Unported License.
+ http://creativecommons.org/licenses/by/3.0/
+
+ You are free:
+   to Share — to copy, distribute and transmit the work
+   to Remix — to adapt the work
+   to make commercial use of the work
+
+ Under the following conditions:
+   Attribution — You must attribute the work in the manner specified by the author or licensor
+   (but not in any way that suggests that they endorse you or your use of the work)
+
 Sample Level (empty.cry)
 ========================
 Copyright (c) 2012, Hendrik Polczynski
@@ -45,6 +61,12 @@ Copyright (c) 2012, Blender Foundation | mango.blender.org
  Under the following conditions:
    Attribution — You must attribute the work in the manner specified by the author or licensor
    (but not in any way that suggests that they endorse you or your use of the work)
+
+CRYENGINE_Logo_Animated_1080p.webm
+=====================
+© 2013 Crytek GmbH
+CryENGINE and CINEBOX are trademarks or registered trademarks of Crytek GmbH in the U.S. and/or other countries.
+see http://assets.crytek.com/asset-bank/action/viewConditions
 
 logo_cryengine3.webm
 =====================

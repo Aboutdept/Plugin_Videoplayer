@@ -1,0 +1,7 @@
+<MetaData>
+ <Attributes>
+	<loading_image value="Levels/Singleplayer/Forest/LoadingForest.dds"/>
+	<unloading_image value="Levels/Singleplayer/Forest/LoadingForest.dds"/>
+	<DescriptionText text="@Loading_screen_info_forest"/>
+ </Attributes>
+</MetaData>
