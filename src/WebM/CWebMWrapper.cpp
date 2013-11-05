@@ -272,6 +272,10 @@ namespace VideoplayerPlugin
 
         if ( m_pCE3Tex && pSamp )
         {
+#if CDK_VERSION >= 350
+            // 3.5 crashes else on map change -> release orginal texture
+            SAFE_RELEASE( pSamp->m_pITex );
+#endif
             pSamp->m_pITex = m_pCE3Tex;
             ULONG nrefcount = m_pCE3Tex->AddRef();
 

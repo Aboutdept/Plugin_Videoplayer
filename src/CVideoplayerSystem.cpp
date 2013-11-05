@@ -149,6 +149,15 @@ namespace VideoplayerPlugin
             SetScreenState( eSS_InGameScreen );
         }
 
+#if CDK_VERSION >= 350
+
+        if ( event.m_event == eAE_unloadLevel )
+        {
+            OnLevelEnd( NULL );
+        }
+
+#endif
+
         //CryLogAlways("OActionE %d = %d (%s)", (int)event.m_event, event.m_value, event.m_description ? event.m_description : "");
     }
 
@@ -198,6 +207,8 @@ namespace VideoplayerPlugin
 
     void CVideoplayerSystem::OnLevelEnd( const char* nextLevel )
     {
+        gPlugin->LogAlways( "LevelEnd detected" );
+
         // Also cleanup materials after level end (because all materials are bound to level, there are no global materials)
         ReleaseMaterials();
     }
