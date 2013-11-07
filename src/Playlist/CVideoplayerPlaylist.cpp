@@ -271,7 +271,7 @@ namespace VideoplayerPlugin
 
     void CVideoplayerPlaylist::OnEndPlaylist()
     {
-        if ( m_bShowMenuOnEnd )
+        if ( m_bShowMenuOnEnd && !m_bLoop )
         {
             // Show menu in the next frame
             gPluginManager->DelayFunction( "delaymenu", &_DelayMenuShow, NULL, NULL, 0, PluginManager::eDT_Frames );
@@ -697,6 +697,14 @@ namespace VideoplayerPlugin
         {
             m_qVideoEvents.empty(); // clear events videos will be invalid after init
 
+            // Handle Playlist Loop
+            if ( m_iScene >= m_iSceneCount && m_bLoop )
+            {
+                OnEndPlaylist();
+                m_iScene =  m_iStartAtScene;
+                OnStartPlaylist();
+            }
+
             if ( m_iScene < m_iSceneCount )
             {
                 XmlNodeRef xmlScene = m_xmlPlaylist->getChild( m_iScene++ );
@@ -743,6 +751,7 @@ namespace VideoplayerPlugin
         m_bShowMenuOnEnd = m_bShowMenuOnEndDefault;
 
         m_iScene = 0;
+        m_iStartAtScene = 0;
 
         if ( m_xmlPlaylist != NULL )
         {
@@ -752,7 +761,7 @@ namespace VideoplayerPlugin
 
             if ( nStartAtScene > 0 )
             {
-                m_iScene = CLAMP( nStartAtScene, 0, m_iSceneCount );
+                m_iStartAtScene = m_iScene = CLAMP( nStartAtScene, 0, m_iSceneCount );
             }
 
             if ( nEndAtScene > 0 )
@@ -783,6 +792,7 @@ namespace VideoplayerPlugin
 #endif
         }
 
+        m_iStartAtScene = 0;
         m_iScene = 0;
         m_iSceneCount = 0;
         m_bLoop = false;

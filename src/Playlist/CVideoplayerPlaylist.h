@@ -103,6 +103,7 @@ namespace VideoplayerPlugin
     {
         private:
             XmlNodeRef  m_xmlPlaylist; // XML Nodes
+            int         m_iStartAtScene;
             int         m_iScene;
             int         m_iSceneCount;
             bool        readNextScene();
