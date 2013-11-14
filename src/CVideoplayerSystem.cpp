@@ -733,7 +733,7 @@ namespace VideoplayerPlugin
 
         if ( m_pVideos.find( nVideoID ) != m_pVideos.end() )
         {
-            delete ( CWebMWrapper* )( m_pVideos[nVideoID] );
+            delete( CWebMWrapper* )( m_pVideos[nVideoID] );
             m_pVideos.erase( nVideoID );
         }
     }
@@ -750,7 +750,7 @@ namespace VideoplayerPlugin
     {
         if ( m_pPlaylists.find( pPlaylist ) != m_pPlaylists.end() )
         {
-            delete ( CVideoplayerPlaylist* )( m_pPlaylists[pPlaylist] );
+            delete( CVideoplayerPlaylist* )( m_pPlaylists[pPlaylist] );
             m_pPlaylists.erase( pPlaylist );
         }
     }

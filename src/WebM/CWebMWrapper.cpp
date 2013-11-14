@@ -331,7 +331,7 @@ namespace VideoplayerPlugin
                         // Calculate based on width
                         fWidth = fArea.w; // fit
                         fHeight = fArea.h * ( 1.0 / fAR ); // border
-                        fHeightOffset =  ( fArea.h - fHeight ) / 2.0; // border
+                        fHeightOffset = ( fArea.h - fHeight ) / 2.0;  // border
                     }
 
                     else
@@ -358,7 +358,7 @@ namespace VideoplayerPlugin
                         // Calculate based on width
                         fWidth = fArea.w; // fit
                         fHeight = fArea.h * ( 1.0 / fAR ); // crop (place outside)
-                        fHeightOffset =  ( fArea.h - fHeight ) / 2.0; // crop
+                        fHeightOffset = ( fArea.h - fHeight ) / 2.0;  // crop
                     }
 
                     break;

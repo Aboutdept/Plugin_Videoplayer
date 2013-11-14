@@ -84,8 +84,8 @@ namespace VideoplayerPlugin
         }
 
         safeRelease( m_pTex, true );
-        safeRelease( m_pSurfaceYUV, true  );
-        safeRelease( m_pStagingSurface, true  );
+        safeRelease( m_pSurfaceYUV, true );
+        safeRelease( m_pStagingSurface, true );
     }
 
     bool CVideoRendererDX9::CreateResources( unsigned nSourceWidth, unsigned nSourceHeight, unsigned nTargetWidth, unsigned nTargetHeight )
@@ -122,7 +122,7 @@ namespace VideoplayerPlugin
 #if !defined(USE_SEPERATEMEMORY)
 
                 // YV12 format possible?
-                if (    FAILED( pD3D->CheckDeviceFormatConversion( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, D3DFMT_UNKNOWN, D3DFMT_X8R8G8B8 ) )
+                if ( FAILED( pD3D->CheckDeviceFormatConversion( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, D3DFMT_UNKNOWN, D3DFMT_X8R8G8B8 ) )
                         &&  SUCCEEDED( pD3D->CheckDeviceFormatConversion( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, D3DFMT_YV12, D3DFMT_X8R8G8B8 ) ) )
                 {
 #if defined(_DEBUG)
@@ -340,7 +340,7 @@ namespace VideoplayerPlugin
 #else
                             hr = m_pD3DDevice->StretchRect( m_pStagingSurface, NULL, surfaceTemp, NULL, D3DTEXF_POINT );
 #endif
-                            assert ( SUCCEEDED( hr ) );
+                            assert( SUCCEEDED( hr ) );
                         }
 
                         m_bDirty = false;

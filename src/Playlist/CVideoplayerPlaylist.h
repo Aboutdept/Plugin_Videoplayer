@@ -11,7 +11,7 @@ namespace VideoplayerPlugin
 
     class CVideoplayerPlaylist;
     struct SVideoInput :
-        private IVideoplayerEventListener
+            private IVideoplayerEventListener
     {
         SVideoInput();
         ~SVideoInput();

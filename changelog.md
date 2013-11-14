@@ -1,12 +1,17 @@
-Videoplayer Plugin 2.0 (TBD)
+Videoplayer Plugin 2.0 (18.11.2013)
 ==============
-Stable Release for CryEngine 3.5
+Stable Release for CryEngine 3.5.4
 
 New:
 * Flash/Scaleform Samples
+* 3.5.4 Sample Level
+* New CryEngine logo with sound included in samples
+
+Fixes:
+* Playlist looping
 
 Thanks to:
-* Nicolas Lefèvre for the Samples/Tutorials
+* Nicolas Lefèvre for the Flash Samples/Tutorials
 
 Videoplayer Plugin 1.9.0 (02.03.2013)
 ==============

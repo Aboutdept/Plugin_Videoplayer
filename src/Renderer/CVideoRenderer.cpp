@@ -377,8 +377,8 @@ namespace VideoplayerPlugin
             case VRT_AUTO:
                 switch ( gD3DSystem->GetType() )
                 {
-                        //case D3D_DX11:
-                        //  return new CVideoRendererDX11();
+                    //case D3D_DX11:
+                    //  return new CVideoRendererDX11();
                     case D3DPlugin::D3D_DX9:
                         pRet = new CVideoRendererDX9();
                         goto finished;

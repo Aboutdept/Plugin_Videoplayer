@@ -102,7 +102,7 @@ namespace VideoplayerPlugin
 
     void* CPluginVideoplayer::GetConcreteInterface( const char* sInterfaceVersion )
     {
-        return static_cast < IPluginVideoplayer* > ( gVideoplayerSystem );
+        return static_cast <IPluginVideoplayer*>( gVideoplayerSystem );
     };
 
     bool CPluginVideoplayer::RegisterTypes( int nFactoryType, bool bUnregister )
