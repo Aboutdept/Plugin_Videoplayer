@@ -3,6 +3,8 @@ Videoplayer-Plugin
 
 Videoplayer for CryEngine featuring WebM, DirectX 9, DirectX 11 Support
 
+If you want to support my endeavours please feel free to pre-order a copy of [Miscreated](http://miscreatedgame.com/buy) an multiplayer, post-apocalyptic, survival-based sandbox game created using CRYENGINE.
+
 Features
 --------
 * Create Video Splashscreens / Menubackgrounds
