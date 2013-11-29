@@ -209,8 +209,7 @@
       <AdditionalLibraryDirectories>$(ProjectDir)..\libvpx\lib\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>cd $(ProjectDir)/../tools
-stylecode.bat</Command>
+      <Command>call "$(ProjectDir)..\tools\stylecode.bat" "$(ProjectDir)..\"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -238,8 +237,7 @@ stylecode.bat</Command>
       <AdditionalLibraryDirectories>$(ProjectDir)..\libvpx\lib\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>cd $(ProjectDir)/../tools
-stylecode.bat</Command>
+      <Command>call "$(ProjectDir)..\tools\stylecode.bat" "$(ProjectDir)..\"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -271,8 +269,7 @@ stylecode.bat</Command>
       <AdditionalLibraryDirectories>$(ProjectDir)..\libvpx\lib\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>cd $(ProjectDir)/../tools
-stylecode.bat</Command>
+      <Command>call "$(ProjectDir)..\tools\stylecode.bat" "$(ProjectDir)..\"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -302,8 +299,7 @@ stylecode.bat</Command>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PreBuildEvent>
-      <Command>cd $(ProjectDir)/../tools
-stylecode.bat</Command>
+      <Command>call "$(ProjectDir)..\tools\stylecode.bat" "$(ProjectDir)..\"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

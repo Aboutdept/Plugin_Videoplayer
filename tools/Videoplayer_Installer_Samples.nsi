@@ -6,7 +6,7 @@
 ##################################
 XPStyle on
 
-!define VERSION "1.7.0.0"
+!define VERSION "2.0.0.0"
 Name "Videoplayer Plugin ${VERSION} Samples for CryEngine"
 
 ; The file to write
@@ -18,13 +18,14 @@ InstallDir "C:\CryENGINE_PC\"
 ; Request application privileges for Windows Vista/7
 RequestExecutionLevel user
 
-!define FILES_ROOT "..\samples"
+!define FILES_ROOT "..\samples\3.5.X"
+!define FILES_ROOT_ALL "..\samples"
 
 ; MUI Settings
 !define MUI_ABORTWARNING
 
-!define MUI_ICON "${FILES_ROOT}\..\..\Plugin_SDK\images\logos\PluginWizard.ico"
-!define MUI_UNICON "${FILES_ROOT}\..\..\Plugin_SDK\images\logos\PluginWizard.ico"
+!define MUI_ICON "${FILES_ROOT_ALL}\..\..\Plugin_SDK\images\logos\PluginWizard.ico"
+!define MUI_UNICON "${FILES_ROOT_ALL}\..\..\Plugin_SDK\images\logos\PluginWizard.ico"
 
 ;!define MUI_HEADERIMAGE
 ;!define MUI_HEADERIMAGE_BITMAP ""
@@ -33,7 +34,7 @@ RequestExecutionLevel user
 ###################################
 
 ; License page
-!insertmacro MUI_PAGE_LICENSE "${FILES_ROOT}\license.txt"
+!insertmacro MUI_PAGE_LICENSE "${FILES_ROOT_ALL}\license.txt"
 
 ; Components page
 !insertmacro MUI_PAGE_COMPONENTS
@@ -52,14 +53,14 @@ RequestExecutionLevel user
 Section "Samples" SEC_SAMPLES
     SectionIn RO
         
-    SetOutPath "$INSTDIR\Game"
-    File /r "${FILES_ROOT}\Game\"
+    SetOutPath "$INSTDIR\GameSDK"
+    File /r "${FILES_ROOT}\GameSDK\"
 
 	; Standard Code directory also used in git repo
     SetOutPath "$INSTDIR\Code\Plugin_Videoplayer\samples"
-    File /nonfatal "${FILES_ROOT}\*.txt"
-    File /nonfatal "${FILES_ROOT}\*.md"
-    File /nonfatal "${FILES_ROOT}\*.markdown"
+    File /nonfatal "${FILES_ROOT_ALL}\*.txt"
+    File /nonfatal "${FILES_ROOT_ALL}\*.md"
+    File /nonfatal "${FILES_ROOT_ALL}\*.markdown"
 
 	Call ShowChangelog
 SectionEnd
@@ -76,7 +77,7 @@ SectionEnd
 
 ; Set Fileinfos
 VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductName" "Videoplayer Plugin Samples"
-VIAddVersionKey /LANG=${LANG_ENGLISH} "LegalCopyright" "Copyright (c) 2012, The authors of the Videoplayer Plugin project"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "LegalCopyright" "Copyright (c) 2013, The authors of the Videoplayer Plugin project"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "FileDescription" "Videoplayer Plugin Samples for CryEngine"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "FileVersion" "${VERSION}"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductVersion" "${VERSION}"

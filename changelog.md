@@ -1,4 +1,4 @@
-Videoplayer Plugin 2.0 (18.11.2013)
+Videoplayer Plugin 2.0 (29.11.2013)
 ==============
 Stable Release for CryEngine 3.5.4
 
