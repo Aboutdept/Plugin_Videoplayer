@@ -17,6 +17,8 @@ namespace VideoplayerPlugin
             string m_sName;
             ITexture* m_pTex;
             IUIElement* m_pElement;
+            IUIElement* m_pInstance;
+            int m_nInstanceId;
 
             enum EInputPorts
             {
@@ -33,6 +35,8 @@ namespace VideoplayerPlugin
                 m_nID = -1;
                 m_sName = "";
                 m_pElement = NULL;
+                m_pInstance = NULL;
+                m_nInstanceId = -1;
                 m_pTex = NULL;
             }
 
@@ -72,6 +76,55 @@ namespace VideoplayerPlugin
                 config.sDescription = _HELP( PLUGIN_CONSOLE_PREFIX "Videodestination/Texture for use in Scaleform MovieClips" );
 
                 config.SetCategory( EFLN_APPROVED );
+            }
+
+            void TexIntoMc( bool bLoad )
+            {
+                if ( m_pElement )
+                {
+                    size_t nPos = m_sName.rfind( ':' );
+
+                    if ( string::npos != nPos )
+                    {
+                        string sMC = m_sName.substr( nPos + 1 );
+
+                        if ( m_nInstanceId < 0 )
+                        {
+                            IUIElementIteratorPtr iter = m_pElement->GetInstances();
+
+                            while ( m_pInstance = iter->Next() )
+                            {
+                                if ( m_nInstanceId == -2 && !m_pInstance->IsInit() )
+                                {
+                                    continue;
+                                }
+
+                                if ( bLoad )
+                                {
+                                    m_pInstance->LoadTexIntoMc( sMC, m_pTex );
+                                }
+
+                                else
+                                {
+                                    m_pElement->UnloadTexFromMc( sMC, m_pTex );
+                                }
+                            }
+                        }
+
+                        else if ( m_pInstance = m_pElement->GetInstance( m_nInstanceId ) )
+                        {
+                            if ( bLoad )
+                            {
+                                m_pInstance->LoadTexIntoMc( sMC, m_pTex );
+                            }
+
+                            else
+                            {
+                                m_pElement->UnloadTexFromMc( sMC, m_pTex );
+                            }
+                        }
+                    }
+                }
             }
 
             virtual void ProcessEvent( EFlowEvent evt, SActivationInfo* pActInfo )
@@ -123,31 +176,15 @@ namespace VideoplayerPlugin
                                 if ( string::npos != nPos )
                                 {
                                     m_pElement = gEnv->pFlashUI->GetUIElement( m_sName.substr( 0, nPos ).c_str() );
-
-                                    if ( m_pElement )
-                                    {
-                                        m_pElement = m_pElement->GetInstance( GetPortInt( pActInfo, EIP_INSTANCEID ) );
-
-                                        if ( m_pElement )
-                                        {
-                                            m_pElement->LoadTexIntoMc( m_sName.substr( nPos + 1 ), m_pTex );
-                                        }
-                                    }
+                                    m_nInstanceId = GetPortInt( pActInfo, EIP_INSTANCEID );
+                                    TexIntoMc( true );
                                 }
                             }
                         }
 
                         if ( !m_pVideo && m_nID != -1 )
                         {
-                            if ( m_pElement )
-                            {
-                                size_t nPos = m_sName.rfind( ':' );
-
-                                if ( string::npos != nPos )
-                                {
-                                    m_pElement->UnloadTexFromMc( m_sName.substr( nPos + 1 ), m_pTex );
-                                }
-                            }
+                            TexIntoMc( false );
 
                             m_pTex = NULL;
                             m_nID = -1;
@@ -159,8 +196,6 @@ namespace VideoplayerPlugin
                         break;
                 }
             }
-
-
     };
 }
 

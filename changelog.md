@@ -1,3 +1,10 @@
+Videoplayer Plugin 2.0.1 (2014)
+==============
+Stable Release for CryEngine 3.5.6
+
+New:
+* New flow node for overriding scaleform movie clips ```OutputScaleformMovieClip```
+
 Videoplayer Plugin 2.0 (29.11.2013)
 ==============
 Stable Release for CryEngine 3.5.4
